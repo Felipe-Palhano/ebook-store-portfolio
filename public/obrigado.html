@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Obrigado</title>
+<script src="ga.js"></script>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fbfaf6;color:#0b1f4d;font-family:system-ui,sans-serif;text-align:center;padding:24px}main{max-width:460px}h1{letter-spacing:-.02em}p{color:#3b4455;line-height:1.6}</style></head>
+<body><main><h1>Obrigado pela compra!</h1>
+<p>Assim que o pagamento for confirmado, enviamos o link de download para o e-mail que você informou antes do pagamento. Pix costuma confirmar em segundos; boleto pode levar até 2 dias úteis. Confira também a caixa de spam.</p></main>
+<script>
+// Evento de compra (Google Analytics): só dispara quando o Mercado Pago devolve a pessoa com pagamento aprovado
+(function(){
+  var q=new URLSearchParams(location.search);
+  var id=q.get('payment_id')||q.get('collection_id');
+  var ok=(q.get('status')||q.get('collection_status'))==='approved';
+  if(!ok||!id)return;
+  try{if(localStorage.getItem('p_'+id))return;localStorage.setItem('p_'+id,'1')}catch(e){}
+  var it=(q.get('external_reference')||'redacao').split('|')[0].split(',').filter(function(k){return k==='redacao'||k==='matematica'});
+  if(!it.length)it=['redacao'];
+  gtag('event','purchase',{transaction_id:id,value:it.length>1?24.99:14.99,currency:'BRL',items:it.map(function(k){return{item_id:k,item_name:k==='matematica'?'E-book Matemática ENEM':'E-book Redação ENEM',quantity:1}})});
+})();
+</script></body></html>

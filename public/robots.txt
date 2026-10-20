@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /obrigado.html
+Disallow: /download/
+
+Sitemap: https://nota1000.onrender.com/sitemap.xml

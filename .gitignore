@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Credentials and secrets
+.env
+.env.*
+!.env.example
+
+# Paid e-book files
+private/*
+!private/.gitkeep
+
+# Customer orders (personal data)
+orders.json
+
+# System files
+.DS_Store
+Thumbs.db
